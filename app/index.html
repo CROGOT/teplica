@@ -34,9 +34,9 @@
           <div class="col col-lg-auto title-top__right-side">
             <div class="d-flex align-items-center h-100 title-top__right-side__content">
               <div class="row justify-content-evenly align-items-center gx-2 social">
-                <div class="col"><img src="/img/vk.svg" alt="" class="social_icon"></div>
+                <div class="col"><img src="img/vk.svg" alt="" class="social_icon"></div>
                 <!-- <div><img src="/img/Instagram.svg" alt="" class="social_icon"></div> -->
-                <div class="col"><img src="/img/WhatsApp.svg" alt="" class="social_icon"></div>
+                <div class="col"><img src="img/WhatsApp.svg" alt="" class="social_icon"></div>
               </div>
               <div class="d-inline-flex flex-column justify-content-start align-items-center">
                 <span class="phone">+7 (8202) 52-56-52</span>
@@ -137,7 +137,7 @@
                 <div class="block__item item">
                   <h4 class="item__title">{{ item }}</h4>
                   <div class="item__image">
-                    <img data-fancybox class="img-fluid" loading="lazy" src="/img/catalog/{{loop.index}}.jpg" alt="">
+                    <img data-fancybox class="img-fluid" loading="lazy" src="img/catalog/{{loop.index}}.jpg" alt="">
                   </div>
                   <div class="item__btn"><button type="button" class="btn btn-green">Подробнее</button></div>
                 </div>
@@ -163,7 +163,7 @@
                   <h4 class="item__title">{{item[0]  | escape | nl2br}}</h4>
                   <div class="item__image">
                     <div class="item__image__flag {% if item[5] %}active{% endif %}">{{item[5]}}</div>
-                    <img class="img-fluid" loading="lazy" src="/img/catalog/{{item[1]}}.jpg" alt="">
+                    <img class="img-fluid" loading="lazy" src="img/catalog/{{item[1]}}.jpg" alt="">
                   </div>
                  {{ rating.show(item[2]) }} 
                   <div class="d-flex justify-content-center rating_comment">
@@ -202,7 +202,7 @@
                 <div class="col work__item item">
                   <div class="d-flex align-items-center justify-content-evently">
                     <div class="item__img">
-                      <img class="img-fluid" loading="lazy" src="/img/workus/{{item[1]}}.png" alt="">
+                      <img class="img-fluid" loading="lazy" src="img/workus/{{item[1]}}.png" alt="">
                     </div>
                     <div class="item__text">{{item[0]}}</div>
                   </div>
@@ -225,7 +225,7 @@
               <div class="col">
                 <div class="block__item item">
                   <div class="item__image">
-                    <img class="img-fluid" loading="lazy" src="/img/reviews/{{item[2]}}.jpg" alt="">
+                    <img class="img-fluid" loading="lazy" src="img/reviews/{{item[2]}}.jpg" alt="">
                   </div>
                   {{ rating.show(item[3]) }} 
                   <div class="item__content">
@@ -250,7 +250,7 @@
       <div class="row row-cols-2 row-cols-lg-4 justify-content-center g-3 projects__block">
         {% for i in range(1, 13) -%}
           <div class="col block__item">
-            <a href=""><img loading="lazy" src="\img\{{i}}.jpg" alt=""></a>
+            <a href=""><img loading="lazy" src="img/{{i}}.jpg" alt=""></a>
           </div>
         {% endfor %}
       </div>
@@ -299,7 +299,7 @@
         <div class="col block__item">
           <div class="d-flex p-3 item">
             <div class="flex-shrink-0 item__image">
-              <img loading="lazy" src="\img\2.jpg" alt="">
+              <img loading="lazy" src="img/2.jpg" alt="">
             </div>
             <div class="d-flex flex-column justify-content-between ps-3 item__content">
               <div class="item__text">Каркас для теплицы. Какой выбрать?<br>Оцинкованный профиль против металлических
