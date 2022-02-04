@@ -1,0 +1,13 @@
+{% macro show(rating=5) %}
+<div class="rating">
+  <div class="d-flex justify-content-center rating-group">
+    {% for i in [0,1,2,3,4] %}
+    <div class="rating_star">
+      <svg class="star_svg svg-fill {{ "fill" if i < rating }}" role="img" aria-label="Tools">
+        <use xlink:href="bootstrap-icons.svg#star-fill"/>
+      </svg>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endmacro %}
