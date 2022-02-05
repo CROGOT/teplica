@@ -16,6 +16,12 @@ import autoprefixer from 'gulp-autoprefixer';
 import group_media  from 'gulp-group-css-media-queries';
 import clean_css    from 'gulp-clean-css';
 import rename       from 'gulp-rename';
+import newer        from 'gulp-newer';
+import webp         from 'gulp-webp';
+import imagemin     from 'gulp-imagemin';
+// import webpHTML     from 'gulp-webp-html-fix';
+// import webpHTML     from 'gulp-webp-html-nosvg';
+import webpHTML     from 'gulp-html-img-wrapper';
 //import file_include from 'gulp-file-include';
 
 // SERVER
@@ -67,6 +73,7 @@ export const html = () => {
   return src('app/index.html')
     //.pipe(file_include())
     .pipe(nunjucks())
+    .pipe(webpHTML())
     .pipe(version(versionConfig))
     .pipe(htmlmin({
       removeComments: true,
@@ -101,6 +108,23 @@ export const scripts = () => {
     .pipe(rename({ extname: '.min.js' }))
     .pipe(dest('dist/js/'))
     .pipe(sync.stream());
+};
+
+//IMAGES
+export const images = () => {
+  return src('app/img/**/*.*')
+    .pipe(newer('dist/img/**/*.*'))
+    .pipe(webp())
+    .pipe(dest('dist/img'))
+    .pipe(src('app/img/**/*.*'))
+    .pipe(newer('dist/img/**/*.*'))
+    .pipe(imagemin({
+      progressive: true,
+      interlaced: true,
+      optimizayionLevel: 3
+    }))
+    .pipe(dest('dist/img'));
+    //.pipe(sync.stream());
 };
 
 function startwatch(){
