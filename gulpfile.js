@@ -1,46 +1,96 @@
 // https://webdesign-master.ru/blog/tools/gulp-4-lesson.html
-const {src, dest, parallel, series, watch} = require('gulp');
-const browserSync  = require('browser-sync').create();
-const del          = require('del');
-const nunjucks     = require('gulp-nunjucks-render');
-const concat       = require('gulp-concat');
-const uglify       = require('gulp-uglify-es').default;
-const sass         = require('gulp-sass')(require('sass'));
-const autoprefixer = require('gulp-autoprefixer');
-const group_media  = require('gulp-group-css-media-queries');
-const clean_css    = require('gulp-clean-css');
-const rename       = require('gulp-rename');
-const file_include = require('gulp-file-include');
+import gulp from 'gulp';
+const {src, dest, parallel, series, watch} = gulp;
+import sync         from 'browser-sync';
+import htmlmin      from 'gulp-htmlmin';
+import del          from 'del';
+import version      from 'gulp-version-number';
+import nunjucks     from 'gulp-nunjucks-render';
+import concat       from 'gulp-concat';
+import uglify_pkg   from 'gulp-uglify-es';
+const uglify = uglify_pkg.default;
+import gulpSass         from 'gulp-sass';
+import dartSass         from 'sass';
+const sass = gulpSass(dartSass);
+import autoprefixer from 'gulp-autoprefixer';
+import group_media  from 'gulp-group-css-media-queries';
+import clean_css    from 'gulp-clean-css';
+import rename       from 'gulp-rename';
+//import file_include from 'gulp-file-include';
 
-function browsersync(){
-  browserSync.init({
-    server: { baseDir: 'dist/' },
-    notify: false,
-    online: true
-  })
-}
+// SERVER
+export const server = () => {
+  sync.init({
+      ui: false,
+      notify: false,
+      online: true,
+      server: { baseDir: 'dist' }
+  });
+};
+
 function clean(){
   return del('dist');
 }
-function html(){
+// Copy
+export const copy = () => {
+    return src([
+            'app/fonts/**/*',
+            'app/img/**/*',
+        ], {
+            base: 'app'
+        })
+        .pipe(dest('dist'))
+        .pipe(sync.stream({
+            once: true
+        }));
+};
+// HTML
+const versionConfig = {
+  'value': '%MDS%',
+  'append': {
+    'key': 'v',
+    'to': ['css', 'js'],
+    // 'to':{
+    //   'files':['*.css']
+    // }
+  },
+};
+
+function setVersion(){
+  return src('dist/index.html')
+    .pipe(version(versionConfig))
+    .pipe(dest('dist'))
+    .pipe(sync.stream());
+}
+
+export const html = () => {
   return src('app/index.html')
     //.pipe(file_include())
     .pipe(nunjucks())
-    .pipe(dest('dist/'))
-    .pipe(browserSync.stream());
-}
-function styles(){
+    .pipe(version(versionConfig))
+    .pipe(htmlmin({
+      removeComments: true,
+      collapseWhitespace: true,
+    }))
+    .pipe(dest('dist'));
+    //.pipe(sync.stream());
+};
+
+// CSS
+export const styles = () => {
     return src('app/scss/main.scss')
     .pipe(sass())
     .pipe(group_media())
     .pipe(autoprefixer({overrideBrowserslist: ['last 5 versions'], cascade: true }))
-    .pipe(dest('dist/css/'))
+    .pipe(dest('dist/css'))
     .pipe(clean_css())
     .pipe(rename({ extname: '.min.css' }))
-    .pipe(dest('dist/css/'))
-    .pipe(browserSync.stream());
-}
-function scripts(){
+    .pipe(dest('dist/css'));
+    //.pipe(sync.stream());
+};
+
+// SCRIPTS
+export const scripts = () => {
   return src([
     //'node_modules/jquery/dist/jquery.min.js',
     'app/js/main.js'
@@ -50,18 +100,14 @@ function scripts(){
     .pipe(uglify())
     .pipe(rename({ extname: '.min.js' }))
     .pipe(dest('dist/js/'))
-    .pipe(browserSync.stream());
-}
+    .pipe(sync.stream());
+};
+
 function startwatch(){
   watch('app/js/**/*.js',scripts);
-  watch('app/**/*.html',html);
-  watch('app/scss/**/*.scss',styles);
+  watch('app/**/*.html',series(html,setVersion));
+  watch('app/scss/**/*.scss',series(styles,setVersion));
 }
 
-exports.browsersync = browsersync;
-exports.html = html;
-exports.scripts = scripts;
-exports.styles = styles;
-exports.startwatch = startwatch;
-exports.clean = clean;
-exports.default = parallel(series( html, styles, scripts, startwatch), browsersync); 
+
+export default parallel( series(html, styles, scripts, startwatch), server);
