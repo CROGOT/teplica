@@ -1,0 +1,44 @@
+{% set script_yndex=true %}
+<section class="quality">
+  <div class="container">
+    <h2 class="section-title"><span class="title_green">Гарантия </span><span>качества</span></h2>
+    <div class="quality__text">
+      <p>
+        Компания «Череповецкие теплицы» 
+        <span class="color-acsent bold">более 12 лет занимается производством и продажей теплиц</span>
+        , занимает уверенные позиции на рынке Вологодской области и за ее пределами.
+      </p>
+      <p>
+        Продукция имеет необходимые <span class="color-acsent bold">СЕРТИФИКАТЫ и ПАТЕНТЫ</span> и может использоваться во всех регионах России и Зарубежья, включая Крайнийний Север и районы с повышенной влажностью и значительными ветровыминагрузками. 
+      </p>
+      
+    </div>
+    <div class="d-flex flex-wrap justify-content-center g-2 quality__block">
+      {% for i in range(0,16) %}
+      <div class="block__item">
+        <div class="item__image">
+          <div class="image-wrap ratio_3x4">
+            <img src="img/no-image.svg" alt="">
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<section class="coordinates">
+  <div class="coordinates__content">
+    Вы можете обратиться к нам по телефону, по электронной почте или договориться о встрече в нашем офисе. Будем рады помочь вам и ответить на все ваши вопросы.
+    Телефоны:
+    +7 (8202) 52-56-52+7 
+    (921) 688 47 77+7 
+    (8202) 52-10-52
+    Email: 
+    cherepovets.teplitsa@yandex.ru
+    Адрес:
+    г.Череповец, ул.Городского Питомника м.1
+  </div>
+  <iframe class="map"
+    src="https://yandex.ru/map-widget/v1/?um=constructor%3A1e0706afb4702a0719261b3926e0829d3f7dd1cd4c5d6c18d513451088ee2114&amp;source=constructor"
+    width="100%" height="400" frameborder="0"></iframe>
+</section>

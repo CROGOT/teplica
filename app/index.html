@@ -8,15 +8,16 @@
   <title>Теплицы35</title>
   <link rel="preload" href="fonts/CoreSansC-65Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
 <body>
   <div class="wrapper">
-    <header class="sticky-top">
+    <header class="">
+    <!-- <header class="sticky-top"> -->
       <div class="container d-none d-lg-block">
         <div class="row justify-content-between mx-auto title-top">
           <div class="col col-lg-auto title-top__left-side">
@@ -133,7 +134,7 @@
           <div class="row row-cols-2 row-cols-lg-4 catalog__block block">
             {% set CATALOG=['Теплицы','Парники','Грядки','Клумбы','Поликарбонат','Беседки','Душевые кабины','Штакетник'] %}
             {% for item in CATALOG %}
-              <div class="col">
+              <div class="col d-flex flex-column justify-content-end">
                 <div class="block__item item">
                   <h4 class="item__title">{{ item }}</h4>
                   <div class="item__image">
@@ -151,14 +152,14 @@
         <div class="container">
           <h2 class="section-title"><span class="title_green">Выбор </span><span class="title_white">покупателей</span>
           </h2>
-          <div class="row row-cols-2 row-cols-lg-4 choice-customer_block block">
+          <div class="row row-cols-2 row-cols-lg-4  gy-4 choice-customer_block block">
             {% set CHOICE_CUSTOMER=[ ['“Крепость”\nтеплица из поликарбоната','1',5,23,17,'-10%'],
                                   ['“бабочка”\nпарник из поликарбоната','2',5,56,19,false],
                                   ['“капелька”\nтеплица 3 метра','3',4,177,16,'ХИТ'],
                                   ['комплект грядок\nв теплицу','4',3,44,23,false]  ]
              %}
              {% for item in CHOICE_CUSTOMER %}
-              <div class="col">
+              <div class="col d-flex flex-column justify-content-end">
                 <div class="block__item item">
                   <h4 class="item__title">{{item[0]  | escape | nl2br}}</h4>
                   <div class="item__image">
@@ -216,7 +217,7 @@
       <section class="reviews">
         <div class="container">
           <h2 class="section-title"><span class="title_green">Отзывы наших </span><span>клиентов</span></h2>
-          <div class="row row-cols-2 row-cols-lg-4 justify-content-center reviews__block">
+          <div class="row row-cols-2 row-cols-lg-4 justify-content-center reviews__block g-2 g-sm-3 g-lg-4 g-xxl-5">
             {% set REVIEWS=[  ['Мария Смирнова','г.Москва',1,5],
                               ['Валя Кутепова','г.Улан-Уде',2,4],
                               ['Геннадий Петрович','г.Париж',3,5],
@@ -224,15 +225,18 @@
             %}
             {% for item in REVIEWS %}
               <div class="col">
-                <div class="block__item item">
-                  <div class="item__image">
-                    <img class="img-fluid" loading="lazy" src="img/reviews/{{item[2]}}.jpg" alt="">
+                <div class="card  block__item item">
+                  
+                  <div class="mx-auto item__image">
+                    <div class="image-wrap">
+                      <img class="card-img  " loading="lazy" src="img/reviews/{{item[2]}}.jpg" alt="">
+                    </div>
                   </div>
-                  {{ rating.show(item[3]) }} 
-                  <div class="item__content">
-                    <div class="item__name">{{item[0]}}</div>
-                    <div class="item__city">{{item[1]}}</div>
-                    <div class="item__text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa quos quae
+                  <div class="card-body item__content">
+                    {{ rating.show(item[3]) }} 
+                    <div class="card-text item__name">{{item[0]}}</div>
+                    <div class="card-text item__city">{{item[1]}}</div>
+                    <div class="card-text item__text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa quos quae
                       suscipit cupiditate, veniam obcaecati pariatur distinctio excepturi error! Veniam assumenda
                       reiciendis ratione quae, quod similique, aliquam natus nemo optio vel animi vitae tempore, delectus
                       laboriosam dolor odit! Atque, suscipit?</div>
@@ -244,11 +248,12 @@
         </div>
   </div>
   </section>
+  {% include "app/_modules/_promotion.html" %}
 <!-- РЕАЛИЗОВАННЫЕ ПРОЕКТЫ -->
   <section class="projects">
     <div class="container">
       <h2 class="section-title"><span class="title_green">Реализованные </span><span>проекты</span></h2>
-      <div class="row row-cols-2 row-cols-lg-4 justify-content-center g-3 projects__block">
+      <div class="row row-cols-2 row-cols-lg-4 justify-content-center g-1 g-md-2 g-lg-3gulp projects__block">
         {% for i in range(1, 13) -%}
           <div class="col block__item">
             <a href=""><img loading="lazy" src="img/{{i}}.jpg" alt=""></a>
@@ -293,16 +298,16 @@
   </section>
 <!-- ПОЛЕЗНЫЕ СТАТЬИ -->
   <section class="useful-articles">
-    <div class="container">
+    <div class="container-lg">
       <h2 class="section-title py-4"><span class="title_green">Полезные </span><span>статьи</span></h2>
-      <div class="row row-cols-2 row-cols-lg-3 justify-content-center g-4 useful-articles__block">
+      <div class="row row-cols-2 row-cols-lg-3 justify-content-center g-2 g-lg-4 useful-articles__block">
         {% for i in range(0, 6) -%}
         <div class="col block__item">
           <div class="d-flex item">
             <div class="flex-shrink-0 item__image">
               <img loading="lazy" src="img/2.jpg" alt="">
             </div>
-            <div class="d-flex flex-column justify-content-between ps-3 item__content">
+            <div class="d-flex flex-column justify-content-between ps-1 ps-lg-4 item__content">
               <div class="item__text">Каркас для теплицы. Какой выбрать?<br>Оцинкованный профиль против металлических
                 труб.</div>
               <div class="item__link"><a class="stretched-link" href="">читать статью</a></div>
@@ -314,11 +319,10 @@
       </div>
     </div>
   </section>
-  <section class="map">
-    <iframe
-      src="https://yandex.ru/map-widget/v1/?um=constructor%3A1e0706afb4702a0719261b3926e0829d3f7dd1cd4c5d6c18d513451088ee2114&amp;source=constructor"
-      width="100%" height="400" frameborder="0"></iframe>
-  </section>
+  
+  {% include "app/_modules/_quality.html" %}
+
+  
   </main>
 
 
