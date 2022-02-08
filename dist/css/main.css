@@ -365,7 +365,8 @@ header {
 .projects,
 .useful-articles,
 .promotion,
-.quality {
+.quality,
+.coordinates {
   position: relative;
   text-align: center;
   padding: 2rem 0;
@@ -788,13 +789,56 @@ header {
           flex: 1 1 auto;
 }
 
-.coordinates {
+.coordinates__block {
   position: relative;
 }
 
-.coordinates__content {
-  max-width: 50%;
-  background-color: rgba(255, 255, 255, 0.6);
+.coordinates .section-title span {
+  text-transform: unset;
+}
+
+.coordinates__wrap {
+  position: relative;
+}
+
+.coordinates__wrap .content {
+  padding: 2em 1em;
+  font-family: var(--fontL);
+  font-weight: 400;
+  text-align: left;
+  position: absolute;
+  display: inline-block;
+  max-width: 25em;
+  right: 0;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 1;
+}
+
+.coordinates__wrap .content a {
+  text-decoration: none;
+  color: inherit;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.coordinates__wrap .content a:hover {
+  color: var(--color-g);
+  letter-spacing: 0.01em;
+}
+
+.coordinates__wrap .content__icon {
+  display: inline-block;
+}
+
+.coordinates__wrap .content__icon svg {
+  max-width: 1rem;
+  max-height: 1em;
+  margin-right: 0.5em;
+  -o-object-fit: cover;
+     object-fit: cover;
+  fill: var(--color-g);
 }
 
 .coordinates .map {
@@ -803,7 +847,6 @@ header {
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: -1;
 }
 
 /*  */

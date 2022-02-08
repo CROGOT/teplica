@@ -318,7 +318,8 @@ header{
 .projects,
 .useful-articles,
 .promotion,
-.quality {
+.quality,
+.coordinates {
   position: relative;
   text-align: center;
   padding: 2rem 0;
@@ -727,18 +728,59 @@ header{
   }
 }
 .coordinates{
-  position: relative;
-  &__content {
-    max-width: 50%;
-    background-color: rgba(255, 255, 255, 0.6);
+  
+  &__block {
+    position: relative;
   }
+  .section-title span{
+    text-transform :unset;
+  }
+  &__wrap {
+    position: relative;
+    //height: 500px;
+    .content{
+      padding: 2em 1em;
+      font-family: var(--fontL);
+      font-weight: 400;
+      text-align: left;
+      position: absolute;
+      display: inline-block;
+      max-width: 25em;
+      //width: 50%;
+      //left: 0;
+      right: 0;
+      top: 0;
+      //bottom: 0;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: 1;
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: all .3s ease-in-out;
+        &:hover{
+          color: var(--color-g);
+          letter-spacing: .01em;
+        }
+      }
+     &__icon {
+       display: inline-block;
+       svg {
+        max-width: 1rem;
+        max-height: 1em;
+        margin-right: .5em;
+        object-fit: cover;
+        fill: var(--color-g);
+       }
+     }
+    }
+  }
+
   .map {
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
-    z-index: -1;
   }
 }
 
