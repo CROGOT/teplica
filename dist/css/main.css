@@ -35,6 +35,10 @@
   font-weight: 400;
 }
 
+.navbar-nav .nav-link.active {
+  color: var(--color-g);
+}
+
 /* ОБЩИЕ БЛОКИ*/
 
 .color-acsent {

@@ -70,7 +70,7 @@ function setVersion(){
 }
 
 export const html = () => {
-  return src(['app/**/index.html','!app/**/_*.html'])
+  return src(['app/**/*.html','!app/**/_*.html'])
     //.pipe(file_include())
     .pipe(nunjucks())
     .pipe(webpHTML())

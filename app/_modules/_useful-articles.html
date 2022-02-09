@@ -1,0 +1,23 @@
+<!-- ПОЛЕЗНЫЕ СТАТЬИ -->
+<section class="useful-articles">
+  <div class="container-lg">
+    <h2 class="section-title py-4"><span class="title_green">Полезные </span><span>статьи</span></h2>
+    <div class="row row-cols-2 row-cols-lg-3 justify-content-center g-2 g-lg-4 useful-articles__block">
+      {% for i in range(0, 6) -%}
+      <div class="col block__item">
+        <div class="d-flex item">
+          <div class="flex-shrink-0 item__image">
+            <img loading="lazy" src="img/2.jpg" alt="">
+          </div>
+          <div class="d-flex flex-column justify-content-between ps-1 ps-lg-4 item__content">
+            <div class="item__text">Каркас для теплицы. Какой выбрать?<br>Оцинкованный профиль против металлических
+              труб.</div>
+            <div class="item__link"><a class="stretched-link" href="">читать статью</a></div>
+          </div>
+
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

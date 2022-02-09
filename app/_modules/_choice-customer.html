@@ -1,0 +1,67 @@
+<!-- ВЫБОР ПОКУПАТЕЛЕЙ -->
+</section>
+<section class="choice-customer">
+  <div class="container">
+    <h2 class="section-title"><span class="title_green">Выбор </span><span class="title_white">покупателей</span>
+    </h2>
+    <div class="row row-cols-2 row-cols-lg-4  gy-4 choice-customer_block block">
+      {% set CHOICE_CUSTOMER=[ ['“Крепость”\nтеплица из поликарбоната','1',5,23,17,'-10%'],
+                            ['“бабочка”\nпарник из поликарбоната','2',5,56,19,false],
+                            ['“капелька”\nтеплица 3 метра','3',4,177,16,'ХИТ'],
+                            ['комплект грядок\nв теплицу','4',3,44,23,false]  ]
+       %}
+       {% for item in CHOICE_CUSTOMER %}
+        <div class="col d-flex flex-column justify-content-end">
+          <div class="block__item item">
+            <h4 class="item__title">{{item[0]  | escape | nl2br}}</h4>
+            <div class="item__image">
+              <div class="item__image__flag {% if item[5] %}active{% endif %}">{{item[5]}}</div>
+              <img class="img-fluid" loading="lazy" src="img/catalog/{{item[1]}}.jpg" alt="">
+            </div>
+           {{ rating.show(item[2]) }} 
+            <div class="d-flex justify-content-center rating_comment">
+              <div class="hand-img">
+                <svg class="hand_svg svg-fill" role="img" aria-label="Tools">
+                  <use xlink:href="bootstrap-icons.svg#hand-thumbs-up" />
+                </svg>
+              </div>
+              <div class="count-hand">{{item[3]}}</div>
+              <div class="comment-img">
+                <svg class="comment_svg svg-fill" role="img" aria-label="Tools">
+                  <use xlink:href="bootstrap-icons.svg#chat-left" />
+                </svg>
+              </div>
+              <div class="count-comment">{{item[4]}}</div>
+            </div>
+            <div class="item__btn"><button type="button" class="btn btn-white">В корзину</button></div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- ПРЕИМУЩЕСТВА РАБОТЫ С НАМИ -->
+<section class="work-with-us">
+  <div class="container">
+    <h2 class="section-title"><span class="title_green">Преимущества </span><span>работы с нами</span></h2>
+    <div class="row row-cols-2 row-cols-lg-3 table-work work">
+      {% set WORKUS=[   ['Высочайшее качество','1'],
+                        ['Цены завода изготовителя','2'],
+                        ['Гарантия','3'],
+                        ['Собственное производство','4'],
+                        ['Наличие на складе','5'],
+                        ['Сервисная поддержка 24/7','6']  ] 
+      %}
+      {% for item in WORKUS %}
+          <div class="col work__item item">
+            <div class="row flex-nowrap align-items-center justify-content-evently">
+              <div class="col-3 item__img">
+                <img class="img-fluid" loading="lazy" src="img/workus/{{item[1]}}.png" alt="">
+              </div>
+              <div class="col item__text">{{item[0] | escape}}</div>
+            </div>
+          </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

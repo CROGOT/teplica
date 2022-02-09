@@ -32,6 +32,9 @@
   font-family: var(--fontL);
   font-weight: 400;
 }
+.navbar-nav .nav-link.active {
+  color: var(--color-g);
+}
 @media (min-width: 1400px) {
   .container,
   .container-lg,

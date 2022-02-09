@@ -1,0 +1,13 @@
+<!-- РЕАЛИЗОВАННЫЕ ПРОЕКТЫ -->
+<section class="projects">
+  <div class="container">
+    <h2 class="section-title"><span class="title_green">Реализованные </span><span>проекты</span></h2>
+    <div class="row row-cols-2 row-cols-lg-4 justify-content-center g-1 g-md-2 g-lg-3gulp projects__block">
+      {% for i in range(1, 13) -%}
+        <div class="col block__item">
+          <a href=""><img loading="lazy" src="img/{{i}}.jpg" alt=""></a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

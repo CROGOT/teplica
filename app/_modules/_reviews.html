@@ -1,0 +1,35 @@
+<!-- ОТЗЫВЫ НАШИХ КЛИЕНТОВ -->
+<section class="reviews">
+  <div class="container">
+    <h2 class="section-title"><span class="title_green">Отзывы наших </span><span>клиентов</span></h2>
+    <div class="row row-cols-2 row-cols-lg-4 justify-content-center reviews__block g-2 g-sm-3 g-lg-4 g-xxl-5">
+      {% set REVIEWS=[  ['Мария Смирнова','г.Москва',1,5],
+                        ['Валя Кутепова','г.Улан-Уде',2,4],
+                        ['Геннадий Петрович','г.Париж',3,5],
+                        ['Иннокентий Смоктуновсий','г.Вологда',4,3]  ] 
+      %}
+      {% for item in REVIEWS %}
+        <div class="col">
+          <div class="card  block__item item">
+            
+            <div class="mx-auto item__image">
+              <div class="image-wrap">
+                <img class="card-img  " loading="lazy" src="img/reviews/{{item[2]}}.jpg" alt="">
+              </div>
+            </div>
+            <div class="card-body item__content">
+              {{ rating.show(item[3]) }} 
+              <div class="card-text item__name">{{item[0]}}</div>
+              <div class="card-text item__city">{{item[1]}}</div>
+              <div class="card-text item__text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa quos quae
+                suscipit cupiditate, veniam obcaecati pariatur distinctio excepturi error! Veniam assumenda
+                reiciendis ratione quae, quod similique, aliquam natus nemo optio vel animi vitae tempore, delectus
+                laboriosam dolor odit! Atque, suscipit?</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</section>
