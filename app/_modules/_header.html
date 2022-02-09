@@ -78,43 +78,39 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
 
               <ul class="navbar-nav">
+                {% set menu=[
+                  {name:"about",      title:"О компании",             url:'about.html'},
+                  {name:"video",      title:"Видео",                  url:'#'},
+                  {name:"projects",   title:"Наши работы",            url:'projects.html'},
+                  {name:"cooperation",title:"Оптовое сотрудничество", url:'cooperation.html'},
+                  {name:"rev",        title:"Отзывы",                 url:'#'},
+                  {name:"contacts",   title:"Контакты",               url:'#'}
+                  ]%}
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle top-dropdown-menu" href="#" id="navbarDropdownMenuLink"
                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     МЕНЮ
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                   
                     <li><a class="dropdown-item" href="#">Теплицы</a></li>
                     <li><a class="dropdown-item" href="#">Парники</a></li>
                     <li><a class="dropdown-item" href="#">Грядки</a></li>
-                    <li><a class="dropdown-item" href="#">Клумбы</a></li>
-                    <li><a class="dropdown-item" href="#">Поликарбонат</a></li>
-                    <li><a class="dropdown-item" href="#">Беседки</a></li>
-                    <li><a class="dropdown-item" href="#">Душевые кабинки</a></li>
-                    <li><a class="dropdown-item" href="#">Компостер</a></li>
-                    <li><a class="dropdown-item" href="#">Штакетник</a></li>
-                    <li><a class="dropdown-item" href="#">Автопроветриватель</a></li>
-                    <li><a class="dropdown-item" href="#">Дополнительные товары</a></li>
+                    <li><a class="dropdown-item disabled" href="#">Клумбы</a></li>
+                    <li><a class="dropdown-item disabled" href="#">Поликарбонат</a></li>
+                    <li><a class="dropdown-item disabled" href="#">Беседки</a></li>
+                    <li><a class="dropdown-item disabled" href="#">Душевые кабинки</a></li>
+                    <li><a class="dropdown-item disabled" href="#">Компостер</a></li>
+                    <li><a class="dropdown-item disabled" href="#">Штакетник</a></li>
+                    <li><a class="dropdown-item disabled" href="#">Автопроветриватель</a></li>
+                    <li><a class="dropdown-item disabled" href="#">Дополнительные товары</a></li>
                   </ul>
                 </li>
+                {% for item in menu %}
                 <li class="nav-item">
-                  <a class="nav-link {{'active' if about }}" {{'aria-current=page' if about}} href="about.html">О компании</a>
+                  <a class="nav-link {{'active' if page==item.name }} {{'disabled' if item.url=='#' }}" {{'aria-current=page' if page==item.name}} href="{{item.url}}">{{item.title}}</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link {{'active' if video }}" {{'aria-current=page' if video}} href="#">Видео</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link {{'active' if projects }}" {{'aria-current=page' if projects}} href="projects.html">Наши работы</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link {{'active' if cooperation }}" {{'aria-current=page' if cooperation}} href="cooperation.html">Оптовое сотрудничество</a> 
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Отзывы</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Контакты</a>
-                </li>
+                {% endfor %}
               </ul>
             </div>
           </div>
