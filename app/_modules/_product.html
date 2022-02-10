@@ -1,0 +1,16 @@
+{% macro show(item) %}
+  <div class="product">
+    <div class="product__title">{{item.title}} <span class="accent">{{item.title__green}}</span></div>
+    <div class="product__image">
+      <div class="image-wrap ratio_4x3">
+       <img src="{{item.img}}" alt="">
+      </div>
+    </div>
+    <div class="product__content">{{item.text | escape | nl2br}}</div>
+    <div class="product__price">
+      <span class="old-price">от <s>{{item.oldprice}}</s>&#x20bd;</span>
+      <span class="new-price">{{item.newprice}}&#8381;</span>
+    </div>
+    <div class="product__btn"><a type="button" class="btn btn-green" href="{{item.url}}">Подробнее</a></div>
+  </div>
+{% endmacro %}

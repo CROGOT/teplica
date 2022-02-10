@@ -1,0 +1,30 @@
+{% set title="Теплицы35 - Парники" %}
+{% set page='greenhouses-small' %}
+{% import "app/_modules/_products.html" as products %}
+
+{% set CONTENT ={
+  TITLE: title,
+  products: [
+    {title__green:'', title:'', 
+     items:[
+     {title:"Бабочка",   img:"img/greenhouses-small/1.png", text:"Ширина 1,1м.\nДлина 2 м, 4 м, 6 м.", oldprice:"38000", newprice:"30 000", url:"product.html"},
+     {title:"сундучок",  img:"img/greenhouses-small/2.png", text:"Ширина 1,1м.\nДлина 2 м, 4 м, 6 м.", oldprice:"31000", newprice:"22 000", url:"product.html"},
+     {title:"Махаон",    img:"img/greenhouses-small/3.png", text:"Ширина 1,1м.\nДлина 2 м, 4 м, 6 м.", oldprice:"30000", newprice:"27 000", url:"product.html"},
+     {title:"Хлебница",  img:"img/greenhouses-small/4.png", text:"Ширина 1,1м.\nДлина 2 м, 4 м, 6 м.", oldprice:"25000", newprice:"15 000", url:"product.html"}
+   ]
+    }
+  ], 
+  breadcrumb: 'Парники',
+  title__green:'Преимущества наших ',
+  title:'парников',
+  table:[
+    ['Высокопрочный сварной каркас из замкнутого оцинкованного профиля','обеспечивает долговечность Вашей теплице'],
+    ['Продольное усиление в соответствии с ГОСТом','позволяют теплице переносить любые снеговые нагрузки'],
+    ['Цельносварные торцы и цельногнутые дуги','делаем мир намного светлее чем у других'],
+    ['Поликарбонат ПРЕМИУМ-4мм с УФ-защитой','конкуренты плачут крокодильими слезами']
+  ],
+  table__image: 'img/greenhouses-small/greenhouse-small.png'
+}%}
+
+
+{{products.show(CONTENT)}}

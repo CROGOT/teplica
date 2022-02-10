@@ -1,0 +1,62 @@
+{% macro show(content) %}
+{% set title=content.TITLE%}
+{% include "app/_modules/_header.html" %}
+<main>
+  {% include "app/_modules/_slider_top.html" %}
+  <sections class="greenhouses">
+    <div class="container-fluid">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Главная</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{content.breadcrumb}}</li>
+        </ol>
+      </nav>
+      {% import "app/_modules/_product.html" as product %}
+      {% for products in content.products %}
+      {% if products.title %}
+      <h2 class="section-title"><span class="title_green">{{products.title__green}}</span><span>{{products.title}}</span></h2>
+      {% endif %} 
+        <div class="row justify-content-center row-cols-2 row-cols-lg-4  gy-4">
+          {% for item in products.items %}
+            {{product.show(item)}}
+          {% endfor %}
+        </div>
+      {% endfor %}
+
+    <h2 class="section-title"><span class="title_green">{{content.title__green}}</span><span>{{content.title}}</span></h2>
+    <div class="container">
+    <div class="product-table">
+        {% macro table__item(item__title, item__text) %}
+          <div class="table__item">
+            <div class="item__title">{{item__title}}</div>
+            <div class="item__text">
+              <div class="text-arrow">
+                <div class="image-wrap">
+                  <svg class="svg" role="img" aria-label="Tools">
+                    <use xlink:href="bootstrap-icons.svg#arrow-down-right-square-fill"></use>
+                  </svg>
+                </div>
+              </div>
+              <span>{{item__text}}</span>
+            </div>
+          </div>
+        {% endmacro %}
+        {{table__item(content.table[0][0],content.table[0][1])}}
+        {{table__item(content.table[1][0],content.table[1][1])}}
+        <div class="table__item-image">
+          <div class="image-wrap ratio_4x3">
+            <img src="{{content.table__image}}" alt="">
+          </div>
+        </div>
+        {{table__item(content.table[2][0],content.table[2][1])}}
+        {{table__item(content.table[3][0],content.table[3][1])}}
+    </div>
+  </div>
+  </sections>
+  {% include "app/_modules/_promotion.html" %}
+  {% include "app/_modules/_reviews.html" %}
+  {% include "app/_modules/_feedback.html" %}
+  {% include "app/_modules/_choice-customer.html" %}
+</main>
+{% include "app/_modules/_footer.html" %}
+{% endmacro %}

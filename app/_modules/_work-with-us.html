@@ -1,0 +1,25 @@
+<!-- ПРЕИМУЩЕСТВА РАБОТЫ С НАМИ -->
+<section class="work-with-us">
+  <div class="container">
+    <h2 class="section-title"><span class="title_green">Преимущества </span><span>работы с нами</span></h2>
+    <div class="row row-cols-2 row-cols-lg-3 table-work work">
+      {% set WORKUS=[   ['Высочайшее качество','1'],
+                        ['Цены завода изготовителя','2'],
+                        ['Гарантия','3'],
+                        ['Собственное производство','4'],
+                        ['Наличие на складе','5'],
+                        ['Сервисная поддержка 24/7','6']  ] 
+      %}
+      {% for item in WORKUS %}
+          <div class="col work__item item">
+            <div class="row flex-nowrap align-items-center justify-content-evently">
+              <div class="col-3 item__img">
+                <img class="img-fluid" loading="lazy" src="img/workus/{{item[1]}}.png" alt="">
+              </div>
+              <div class="col item__text">{{item[0] | escape}}</div>
+            </div>
+          </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
