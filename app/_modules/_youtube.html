@@ -1,18 +1,24 @@
 {% macro show(arr) %}
-<section class="videos">
-  <link
-      rel="stylesheet"
-      href="https://unpkg.com/swiper/swiper-bundle.min.css"
-    />
+
+<section class="videos"> <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
 <div class="container">
   <div class="row">
-    <div class="col-10">
-      <div class="swiper mySwiper">
+    <div class="col-9">
+      <div class="swiper swiper-container mySwiper">
         <div class="swiper-wrapper">
           {% for item in arr %}
             <div class="ratio ratio-16x9 swiper-slide">
-              <video muted loop width="100%" height="auto" playsinline="" type="video/mp4" preload="none" class="" src="video/1.mp4"></video>
-              {# <iframe width="560" height="315" src="https://www.youtube.com/embed/{{item}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> #}
+              <div class="video-item">
+                <video muted autoplay loop width="100%" height="auto" data-yotubeshow="show"  playsinline="" type="video/mp4" preload="none" class="swiper-lazy" data-src="video/{{loop.index}}.mp4"></video>
+                <div class="swiper-lazy-preloader"></div>
+                <button class="btn-youtube-activate" data-yotubeshow="none" data-src="https://www.youtube.com/embed/{{item}}" data-thumbnail="" aria-label="preview" onclick="clickYoutubeShow(this)">
+                  <svg class="svg" role="img" aria-label="Tools">
+                      <use xlink:href="bootstrap-icons.svg#youtube"></use>
+                    </svg>
+                </button>
+                {# <iframe width="560" height="315" src="https://www.youtube.com/embed/{{item}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> #}
+              </div>
             </div>
           {% endfor %}
         </div>
@@ -20,12 +26,14 @@
         <div class="swiper-button-prev"></div>
       </div>
     </div>
-    <div class="col-2">
-      <div class="swiper swiper-video-preview">
-        <div class="swiper-wrapper">
+    <div class="col-3">
+      <div class="swiper swiper-container swiper-thumbs" >
+        <div class="swiper-wrapper swiper-vertical">
           {% for item in arr %}
-            <div class="ratio ratio-16x9 swiper-slide">
-              <img src="//img.youtube.com/vi/{{item}}/default.jpg">
+            <div class="swiper-slide">
+              <div class="ratio ratio-16x9 thumbs-item">
+                <img src="//img.youtube.com/vi/{{item}}/default.jpg">
+              </div>
             </div>
           {% endfor %}
         </div>
@@ -39,13 +47,57 @@
 
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script>
+    var swiperswiperwrapper = new Swiper(".swiper-thumbs", {
+        //loop: true,
+        direction: "vertical",
+        grabCursor: true,
+        //setWrapperSize: true,
+        spaceBetween: 10,
+        slidesPerView: '3',
+        freeMode: true,
+        watchSlidesProgress: true,
+      });
     var swiper = new Swiper(".mySwiper", {
-    swipe: true,
+    loop: true,
+    lazy: true,
+    spaceBetween: 20,
+    grabCursor: true,
       navigation: {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
           },
+      thumbs: {
+          swiper: swiperswiperwrapper,
+      },
+      on: {
+            lazyImageReady: function (swp, slideEl, imageEl) {
+              slideEl.querySelector('.btn-youtube-activate').dataset.yotubeshow='show';
+            },
+            slideChangeTransitionEnd: function(swp){
+              if (swp.YoutubeShow){
+                const btn = swp.el.querySelector(".btn-youtube-activate[data-yotubeshow='none']");
+                const video = swp.el.querySelector("video[data-yotubeshow='none']");
+                const iframe = swp.el.querySelector("iframe");
+
+                btn && (btn.dataset.yotubeshow='show');
+                video && (video.dataset.yotubeshow='show');
+                iframe && iframe.remove();
+                //swp.YoutubeShow = false;
+              }
+            }
+      },
     });
+    swiper.YoutubeShow = true;
+    function clickYoutubeShow(el) {
+      const parent = el.closest('.video-item');
+      parent.querySelector('video').dataset.yotubeshow='none';
+      el.dataset.yotubeshow='none';
+      parent.innerHTML += `<iframe width="100%" height="100%" src="${el.dataset.src}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; gyroscope;" allowfullscreen></iframe>`;
+      swiper.YoutubeShow = true;
+      
+      //console.log(el.closest('.video-item'));
+    }
+
   </script>
 
 </section>

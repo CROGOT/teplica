@@ -73,7 +73,7 @@ export const html = () => {
   return src(['app/**/*.html','!app/**/_*.html'])
     //.pipe(file_include())
     .pipe(nunjucks())
-    .pipe(webpHTML())
+    //.pipe(webpHTML())
     .pipe(version(versionConfig))
     .pipe(htmlmin({
       removeComments: true,

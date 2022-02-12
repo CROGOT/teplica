@@ -20,6 +20,8 @@
   --color-y: #ffc000;
   --color-r: #ff0000;
   --color-w: white;
+  --swiper-preloader-color: #169b00 !important;
+  --swiper-theme-color: #169b00 !important;
 }
 
 .accent {
@@ -1016,6 +1018,107 @@ header {
   font-family: var(--fontL);
   font-size: 1.75rem;
   font-weight: 500;
+}
+
+.swiper-container {
+  height: 35rem;
+}
+
+.swiper-container video {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.swiper-container video[data-yotubeshow=none] {
+  display: none !important;
+}
+
+.swiper-thumbs .swiper-slide {
+  padding: 5px;
+}
+
+.swiper-thumbs .swiper-slide img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.swiper-thumbs .swiper-slide .thumbs-item {
+  border: transparent 3px solid;
+  -webkit-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.swiper-thumbs .swiper-slide .video-item {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.swiper-thumbs .swiper-vertical {
+  height: 100%;
+}
+
+.swiper-slide-thumb-active .thumbs-item {
+  border-color: green !important;
+}
+
+.swiper-lazy-preloader {
+  -webkit-animation: rotate 2s linear infinite;
+          animation: rotate 2s linear infinite;
+}
+
+@-webkit-keyframes rotate {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.btn-youtube-activate {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  margin-right: -50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 6rem;
+  height: 4.2857142857rem;
+  border: none;
+  background: none;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  cursor: pointer;
+}
+
+.btn-youtube-activate[data-yotubeshow=none] {
+  display: none !important;
+}
+
+.btn-youtube-activate svg {
+  width: 100%;
+  height: 100%;
+  fill: red;
+  -webkit-filter: grayscale(100%) contrast(200%) opacity(70%);
+          filter: grayscale(100%) contrast(200%) opacity(70%);
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-youtube-activate svg:hover {
+  -webkit-filter: none;
+          filter: none;
 }
 
 /*  */
