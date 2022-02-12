@@ -32,7 +32,8 @@
     "gulp-webp-html-fix": "^1.0.3",
     "gulp-webp-html-nosvg": "^1.0.5",
     "jquery": "^3.6.0",
-    "sass": "^1.49.7"
+    "sass": "^1.49.7",
+    "swiper": "^8.0.5"
   },
   "description": ""
 }

@@ -38,6 +38,24 @@
 .navbar-nav .nav-link.active {
   color: var(--color-g);
 }
+.breadcrumb{
+  font-family: var(--fontL);
+  font-weight: 300;
+  font-size: 1.75rem;
+  text-transform: uppercase;
+  color: black;
+  padding: 1em 0;
+  .active, a{
+    color: black;
+  }
+  a {
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+    &:hover{
+      color: var(--color-g);
+    }
+  }
+}
 @media (min-width: 1400px) {
   .container,
   .container-lg,
@@ -796,10 +814,16 @@ header{
 
 
  /* ТОВАРЫ */
-
+.products {
+  text-align: center;
+}
 .product{
   text-align: center;
+  padding: 2rem 1 rem;
   color: var(--color-s);
+  &__image img {
+    object-fit: contain;
+  }
   &__title{
     font-family: var(--fontM);
     font-weight: 600;
@@ -814,6 +838,7 @@ header{
     line-height: 1.5em;
   }
   &__price{
+    margin: 1rem 0;
     .old-price{
       font-family: var(--fontL);
       font-weight: 300;
@@ -829,19 +854,22 @@ header{
     // max-width: 400px;
     // max-height: 300px;
   }
+  .btn {
+    margin: 1rem 0;
+    width: 70%;
+    font-size: 1.375rem;
+    text-transform: uppercase;
+  }
 }
-.product-table{
+.product-table {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-rows: 1fr 1fr;
-  align-items:center;
-  // justify-items: center;
-  // grid-auto-flow: row;
-  //> * {border: green solid 1px;}
-  .table__item{
-   //width: 25%;
+  align-items: center;
+  .table__item {
+  //width: 25%;
   }
-  .table__item-image{
+  .table__item-image {
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 1;
@@ -852,7 +880,7 @@ header{
     //min-width: 100px;
     
   }
-  .table__item-image img{
+  .table__item-image img {
     object-fit: contain;
   }
   .item__title {
@@ -890,7 +918,25 @@ header{
     }
   }
 }
-
+.description{
+  padding: 1rem 0;
+  color: white;
+  background-color: var(--color-s);
+  font-family: var(--fontL);
+  font-weight: 500;
+  font-size: .8125rem;
+  line-height: 2.15em;
+  text-transform: uppercase;
+  .description__item {
+    .item__title{
+      font-family: var(--fontL);
+      font-size: 1.75rem;
+      font-weight: 500;
+    }
+  }
+  
+  
+}
 
 
 

@@ -1,0 +1,52 @@
+{% macro show(arr) %}
+<section class="videos">
+  <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          {% for item in arr %}
+            <div class="ratio ratio-16x9 swiper-slide">
+              <video muted loop width="100%" height="auto" playsinline="" type="video/mp4" preload="none" class="" src="video/1.mp4"></video>
+              {# <iframe width="560" height="315" src="https://www.youtube.com/embed/{{item}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> #}
+            </div>
+          {% endfor %}
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+    <div class="col-2">
+      <div class="swiper swiper-video-preview">
+        <div class="swiper-wrapper">
+          {% for item in arr %}
+            <div class="ratio ratio-16x9 swiper-slide">
+              <img src="//img.youtube.com/vi/{{item}}/default.jpg">
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{# <img src="//img.youtube.com/vi/JMJXvsCLu6s/default.jpg" width="120" height="90"> #}
+
+
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+    swipe: true,
+      navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+    });
+  </script>
+
+</section>
+{% endmacro %}

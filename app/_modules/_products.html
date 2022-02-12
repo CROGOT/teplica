@@ -1,62 +1,84 @@
 {% macro show(content) %}
-{% set title=content.TITLE%}
-{% include "app/_modules/_header.html" %}
-<main>
-  {% include "app/_modules/_slider_top.html" %}
-  <sections class="greenhouses">
-    <div class="container-fluid">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Главная</a></li>
-          <li class="breadcrumb-item active" aria-current="page">{{content.breadcrumb}}</li>
-        </ol>
-      </nav>
-      {% import "app/_modules/_product.html" as product %}
-      {% for products in content.products %}
-      {% if products.title %}
-      <h2 class="section-title"><span class="title_green">{{products.title__green}}</span><span>{{products.title}}</span></h2>
-      {% endif %} 
-        <div class="row justify-content-center row-cols-2 row-cols-lg-4  gy-4">
-          {% for item in products.items %}
-            {{product.show(item)}}
-          {% endfor %}
-        </div>
-      {% endfor %}
+  {% set title=content.TITLE%}
+  {% include "app/_modules/_header.html" %}
+  <main>
+    {% include "app/_modules/_slider_top.html" %}
+    <sections class="products">
+      <div class="container-fluid">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-center">
+            <li class="breadcrumb-item"><a href="/">Главная</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{content.breadcrumb}}</li>
+          </ol>
+        </nav>
+        {% import "app/_modules/_product.html" as product %}
+        {% for products in content.products %}
+          {% if products.title %}
+            {% if products.title_reverse %}
+              <h2 class="section-title"><span>{{products.title}}</span><span class="title_green">{{products.title__green}}</span></h2>
+            {% else %}
+              <h2 class="section-title"><span class="title_green">{{products.title__green}}</span><span>{{products.title}}</span></h2>
+            {% endif %} 
+          {% endif %} 
+            <div class="row justify-content-center row-cols-2 row-cols-lg-4  gy-4">
+              {% for item in products.items %}
+                {{product.show(item)}}
+              {% endfor %}
+            </div>
+        {% endfor %}
 
-    <h2 class="section-title"><span class="title_green">{{content.title__green}}</span><span>{{content.title}}</span></h2>
-    <div class="container">
-    <div class="product-table">
-        {% macro table__item(item__title, item__text) %}
-          <div class="table__item">
-            <div class="item__title">{{item__title}}</div>
-            <div class="item__text">
-              <div class="text-arrow">
-                <div class="image-wrap">
-                  <svg class="svg" role="img" aria-label="Tools">
-                    <use xlink:href="bootstrap-icons.svg#arrow-down-right-square-fill"></use>
-                  </svg>
-                </div>
-              </div>
-              <span>{{item__text}}</span>
+      <h2 class="section-title"><span class="title_green">{{content.title__green}}</span><span>{{content.title}}</span></h2>
+      <div class="container">
+      <div class="product-table">
+          
+          <div class="table__item-image">
+            <div class="image-wrap ratio_4x3">
+              <img src="{{content.table__image}}" alt="">
             </div>
           </div>
-        {% endmacro %}
-        {{table__item(content.table[0][0],content.table[0][1])}}
-        {{table__item(content.table[1][0],content.table[1][1])}}
-        <div class="table__item-image">
-          <div class="image-wrap ratio_4x3">
-            <img src="{{content.table__image}}" alt="">
+          {% for table in content.table %}
+            <div class="table__item">
+              <div class="item__title">{{table[0]}}</div>
+              <div class="item__text">
+                <div class="text-arrow">
+                  <div class="image-wrap">
+                    <svg class="svg" role="img" aria-label="Tools">
+                      <use xlink:href="bootstrap-icons.svg#arrow-down-right-square-fill"></use>
+                    </svg>
+                  </div>
+                </div>
+                <span>{{table[1]}}</span>
+              </div>
+            </div>
+          {% endfor %}
+      </div>
+    </div>
+    </sections>
+    <section class="description">
+      <div class="container">
+        <div class="row">
+          <div class="col description__item">
+            <p class="item__title">Каркас</p>
+            <P>Теплица имеет две двери и две форточки в противоположных торцах. Каркас выполнен из оцинкованной квадратной трубы 20х20, расстояниемежду дугами - 1 м или 0,65 м.Благодаря оцинкованному каркасу теплица крайне устойчива к ржавчине и не требует подкрасов во время эксплуатации (в отличие от теплиц, покрашенных грунт-эмалью).</p>
+          </div>
+          <div class="col description__item">
+            <p class="item__title">Крепление поликарбоната</p>
+            <p>Усиленное крепление поликарбоната, кровельными саморезами с резиновой пресс шайбой через оцинкованную ленту. Такое крепление:<br>1) Предотвращает отрыв и повреждение поликарбоната под действием сильного ветра и снеговой шапки;<br>2) Надежно прижимает поликарбонат по всей длине дуги теплицы оцинкованной лентой. Ваш поликарбонат не будет летать по огороду соседей;<br>3) Позволяет избегать случайного перетягивания и продавливания поликарбоната саморезом при монтаже.<br>Для теплицы с шагом дуг 1 м крепление поликарбоната - кровельными саморезами.</p>
+          </div>
+          <div class="col description__item">
+            <p class="item__title">Монтаж</p>
+            <p>Минимальное количество разборных элементов обеспечивает легкость сборки, поэтому 95% покупателей устанавливают теплицу самостоятельно<br><br>Ориентировочное время монтажа теплицы - 3 часа.</p>
           </div>
         </div>
-        {{table__item(content.table[2][0],content.table[2][1])}}
-        {{table__item(content.table[3][0],content.table[3][1])}}
-    </div>
-  </div>
-  </sections>
-  {% include "app/_modules/_promotion.html" %}
-  {% include "app/_modules/_reviews.html" %}
-  {% include "app/_modules/_feedback.html" %}
-  {% include "app/_modules/_choice-customer.html" %}
-</main>
-{% include "app/_modules/_footer.html" %}
+      </div>
+    </section>
+    {% import "app/_modules/_youtube.html" as youtube %}
+    {% set arr=['e','mRkdkqxY1yY','fmnfbo4cMtY'] %}
+    {{youtube.show(arr)}}
+    {% include "app/_modules/_promotion.html" %}
+    {% include "app/_modules/_reviews.html" %}
+    {% include "app/_modules/_feedback.html" %}
+    {% include "app/_modules/_choice-customer.html" %}
+  </main>
+  {% include "app/_modules/_footer.html" %}
 {% endmacro %}
